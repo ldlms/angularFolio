@@ -6,8 +6,8 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, RouterOutlet],
-  templateUrl: 'home/home.component.html',
-  styleUrl: 'home/home.component.css'
+  templateUrl: 'app.component.html',
+  styleUrl: 'app.component.css'
 })
 export class AppComponent {
   title = 'angularFolio';
