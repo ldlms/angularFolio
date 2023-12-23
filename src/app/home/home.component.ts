@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, QueryList, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 // import particlesJS from 'particles.js';
@@ -10,22 +10,29 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements AfterViewInit {
   title = 'Portfolio';
   firstCard: { name: string };
   rightCard: { name: string };
   leftCard: { name: string };
   backCard: { name: string };
+  accordion: HTMLCollectionOf<Element>;
 
-  constructor(){
+  constructor(private renderer: Renderer2){
     this.firstCard = { name: "card first-card" };
     this.rightCard = { name: "card right-card" };
     this.leftCard = { name: "card left-card" };
     this.backCard = { name: "card back-card" };
+    this.accordion = document.getElementsByClassName("card")
   }
 
-  ngOnInit(){
-    this.init();
+
+  ngAfterViewInit() {
+    // Utilisation de ngAfterViewInit pour garantir que les éléments sont rendus avant d'essayer de les sélectionner
+    if (this.accordion) {
+      console.log("Accordéon présent");
+      this.initAccordion();
+    }
   }
 
   moveLeft(): void{
@@ -94,37 +101,37 @@ getBack(currentName:string) {
   }
 }
 
-onClickDiv(currentDiv: HTMLElement) {
-  if (
-    currentDiv.onclick &&
-    currentDiv.onclick.arguments[0].target?.className.split(" ")[0] === "card"
-  ) {
-    const firstChild = currentDiv.firstChild;
-    if (firstChild instanceof HTMLElement) {
-      this.onClickH1(firstChild);
-    }
-  }
-  this.move(currentDiv);
-}
-
-onClickH1(currentDiv: HTMLElement) {
-  const parentNode = currentDiv.parentNode as HTMLElement;
+onClickH1(event:MouseEvent) {
+  const clickedElement = event.target as HTMLElement;
+  const parentNode = clickedElement.parentNode as HTMLElement;
   if (parentNode.className.split(" ")[2] === "selected") {
-    this.unexpand(currentDiv);
+    this.unexpand(event);
   } else {
-    this.expand(currentDiv);
+    this.expand(event);
   }
 }
 
-expand(currentDiv: HTMLElement) {
-  const parentNode = currentDiv.parentNode as HTMLElement | null;
+onClickDiv(event: MouseEvent) {
+  const clickedElement = event.target as HTMLElement;
+  this.move(clickedElement);
+}
+
+
+
+
+expand(event: MouseEvent) {
+  const clickedElement = event.target as HTMLElement;
+  const parentNode = clickedElement.parentNode as HTMLElement;
+  console.log(parentNode && parentNode.className);
   if (parentNode && parentNode.className === this.firstCard.name) {
     parentNode.className = parentNode.className + " selected";
   }
+  
 }
 
-unexpand(currentDiv: HTMLElement) {
-  const parentNode = currentDiv.parentNode as HTMLElement | null;
+unexpand(event: MouseEvent) {
+  const clickedElement = event.target as HTMLElement;
+  const parentNode = clickedElement.parentNode as HTMLElement;
   if (parentNode && parentNode.className === this.firstCard.name + " selected") {
     parentNode.className = this.firstCard.name;
   }
@@ -141,28 +148,24 @@ move(currentDiv:HTMLElement) {
 }
 
 initAccordion() {
-  let acc = document.getElementsByClassName("accordion");
-  
-  for (let i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function(this: HTMLElement) {
-      if (this instanceof HTMLElement) {
-        this.classList.toggle("active");
-
-        let panel = this.nextElementSibling;
-        if (panel instanceof HTMLElement) {
-          if (panel.style.display === "block") {
-            panel.style.display = "none";
-          } else {
-            panel.style.display = "block";
-          }
-        }
+  console.log('Nombre d\'éléments .accordion : ', this.accordion.length);
+  const accordionArray = Array.from(this.accordion);
+  accordionArray.forEach((element: Element) => {
+    const nativeElement = element.nativeElement;
+    console.log('Élément trouvé : ', nativeElement);
+    this.renderer.listen(nativeElement, 'click', () => {
+      console.log('Clic sur l\'élément : ', nativeElement);
+      nativeElement.classList.toggle('active');
+      const panel = nativeElement.nextElementSibling as HTMLElement;
+      console.log('Style display : ', panel.style.display);
+      if (panel.style.display === 'block' || getComputedStyle(panel).display === 'block') {
+        this.renderer.setStyle(panel, 'display', 'none');
+      } else {
+        this.renderer.setStyle(panel, 'display', 'block');
       }
     });
-  }
+  });
 }
-
-init(){
-  this.initAccordion();
 }
 
 // init() {
@@ -222,7 +225,7 @@ init(){
 //       },
 //       retina_detect: true,
 //     });
-}
+
 
 
 
