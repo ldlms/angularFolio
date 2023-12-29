@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ElementRef, ViewChild, QueryList, Renderer2 } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild,ViewChildren, QueryList, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 // import particlesJS from 'particles.js';
@@ -11,25 +11,26 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements AfterViewInit {
+
+  @ViewChildren('accordion') accordions!: QueryList<ElementRef>;
+
   title = 'Portfolio';
   firstCard: { name: string };
   rightCard: { name: string };
   leftCard: { name: string };
   backCard: { name: string };
-  accordion: HTMLCollectionOf<Element>;
 
   constructor(private renderer: Renderer2){
     this.firstCard = { name: "card first-card" };
     this.rightCard = { name: "card right-card" };
     this.leftCard = { name: "card left-card" };
     this.backCard = { name: "card back-card" };
-    this.accordion = document.getElementsByClassName("card")
   }
 
 
   ngAfterViewInit() {
     // Utilisation de ngAfterViewInit pour garantir que les éléments sont rendus avant d'essayer de les sélectionner
-    if (this.accordion) {
+    if (this.accordions) {
       console.log("Accordéon présent");
       this.initAccordion();
     }
@@ -148,9 +149,9 @@ move(currentDiv:HTMLElement) {
 }
 
 initAccordion() {
-  console.log('Nombre d\'éléments .accordion : ', this.accordion.length);
-  const accordionArray = Array.from(this.accordion);
-  accordionArray.forEach((element: Element) => {
+  console.log('Nombre d\'éléments .accordion : ', this.accordions.length);
+  const accordionArray = Array.from(this.accordions);
+  accordionArray.forEach((element: ElementRef) => {
     const nativeElement = element.nativeElement;
     console.log('Élément trouvé : ', nativeElement);
     this.renderer.listen(nativeElement, 'click', () => {
