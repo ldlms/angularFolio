@@ -6,10 +6,11 @@
             <div class="card-wrapper">
                 <div class="profil-wrap"><a href ="https://www.linkedin.com/in/ducoeur-corentin-5b5b94277" target="_blank"><img class ="profil" src="assets/pictures/profil.png"/></a></div>
                 <ul>
+                    <div *ngFor="let item of accordionItems">
                     <li class="accordion" #accordion>
                         <span class="year">&nbsp</span> <div class="li-title">Ducoeur Corentin</div>
                     </li>
-                    <div class = "description" style="display: block;">Eleve en reprise d'étude, le BTS SIO option SLAM semblait le meilleur moyen pour me réorienter professionellement dans le domaine de l'informatique. Je travaille actuellement chez Imerys en tant que data analyst.
+                    <div class = "description" style="display: none;">Eleve en reprise d'étude, le BTS SIO option SLAM semblait le meilleur moyen pour me réorienter professionellement dans le domaine de l'informatique. Je travaille actuellement chez Imerys en tant que data analyst.
                         <li class="image">
                             <img class="fit-picture"  src="./assets/pictures/cv_logo.png" alt="cv_logo.png"/>
                             <div class="li-title"><a style ="margin-left: 1.4em;" href ="./assets/charts/CV_2023-01-17_DUCOEUR_Corentin.pdf" target="_blank">Mon CV</a></div> 
@@ -51,7 +52,7 @@
                     <li class="accordion" #accordion>
                         <span class="year">&nbsp</span> <div class="li-title">Me suivre: </div> 
                     </li>
-                    <div class = "description" style="display: block;">
+                    <div class = "description" style="display: none;">
                         <li class="image" style="font-size: x-large">
                             <img class="fit-picture"  src="./assets/pictures/github.svg" alt="github_img"/>
                             <div class="li-title"><a style ="margin-left: 1.4em;" href ="https://github.com/Leykh" target="_blank">Github</a></div> 
@@ -60,6 +61,7 @@
                             <img class="fit-picture"  src="./assets/pictures/linkedin.svg" alt="linkedin_img"/>
                             <div class="li-title"><a style ="margin-left: 1.4em;" href ="https://www.linkedin.com/in/ducoeur-corentin-5b5b94277" target="_blank">Linkedin</a></div> 
                         </li>
+                    </div>
                     </div>
                 </ul>
             </div>
@@ -167,7 +169,7 @@
                         <li>
                             <span class="year">Imerys</span> Mon entreprise
                         </li>
-                        <div class = "description" style="display: block;">
+                        <div class = "description" style="display: none;">
                             Imerys est une société française multinationale spécialisée dans la production et la transformation des minéraux industriels. Cela fait maintenant 6 ans que je travaille dans la Data et la qualitée de celle-ci pour la division RAC (refractory & abrasives) et ses multiples BI/ERP/CRM.
                             <li class="image">
                                 <span class="year">&nbsp</span> Quelques chiffres

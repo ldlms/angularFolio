@@ -14,11 +14,17 @@ export class HomeComponent implements AfterViewInit {
 
   @ViewChildren('accordion') accordions!: QueryList<ElementRef>;
 
+  accordionItems = [
+    { title: 'Section 1', active: false },
+    { title: 'Section 2', active: false },
+];
+
   title = 'Portfolio';
   firstCard: { name: string };
   rightCard: { name: string };
   leftCard: { name: string };
   backCard: { name: string };
+  isStyleActive: boolean = false;
 
   constructor(private renderer: Renderer2){
     this.firstCard = { name: "card first-card" };
@@ -31,9 +37,17 @@ export class HomeComponent implements AfterViewInit {
   ngAfterViewInit() {
     // Utilisation de ngAfterViewInit pour garantir que les éléments sont rendus avant d'essayer de les sélectionner
     if (this.accordions) {
-      console.log("Accordéon présent");
       this.initAccordion();
     }
+  }
+
+  toggleAccordion(item: any) {
+    item.active = !item.active;
+}
+
+  toggleStyle() {
+    this.isStyleActive = !this.isStyleActive;
+    console.log(this.isStyleActive);
   }
 
   moveLeft(): void{
@@ -123,7 +137,6 @@ onClickDiv(event: MouseEvent) {
 expand(event: MouseEvent) {
   const clickedElement = event.target as HTMLElement;
   const parentNode = clickedElement.parentNode as HTMLElement;
-  console.log(parentNode && parentNode.className);
   if (parentNode && parentNode.className === this.firstCard.name) {
     parentNode.className = parentNode.className + " selected";
   }
@@ -153,12 +166,9 @@ initAccordion() {
   const accordionArray = Array.from(this.accordions);
   accordionArray.forEach((element: ElementRef) => {
     const nativeElement = element.nativeElement;
-    console.log('Élément trouvé : ', nativeElement);
     this.renderer.listen(nativeElement, 'click', () => {
-      console.log('Clic sur l\'élément : ', nativeElement);
       nativeElement.classList.toggle('active');
       const panel = nativeElement.nextElementSibling as HTMLElement;
-      console.log('Style display : ', panel.style.display);
       if (panel.style.display === 'block' || getComputedStyle(panel).display === 'block') {
         this.renderer.setStyle(panel, 'display', 'none');
       } else {
@@ -167,6 +177,8 @@ initAccordion() {
     });
   });
 }
+
+
 }
 
 // init() {
