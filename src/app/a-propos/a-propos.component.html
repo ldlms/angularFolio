@@ -1,0 +1,66 @@
+<div class="card-container">
+    <div (click)="onClickDiv($event)" class="card first-card">
+        <h1 (click)="onClickH1($event)">A propos</h1>
+        <div class="card-wrapper">
+            <div class="profil-wrap"><a href ="https://www.linkedin.com/in/ducoeur-corentin-5b5b94277" target="_blank"><img class ="profil" src="assets/pictures/profil.png"/></a></div>
+            <ul>
+                <li class="accordion" #accordion>
+                    <span class="year">&nbsp</span> <div class="li-title">Ducoeur Corentin</div>
+                </li>
+                <div class = "description" style="display: none;">Eleve en reprise d'étude, le BTS SIO option SLAM semblait le meilleur moyen pour me réorienter professionellement dans le domaine de l'informatique. Je travaille actuellement chez Imerys en tant que data analyst.
+                    <li class="image">
+                        <img class="fit-picture"  src="./assets/pictures/cv_logo.png" alt="cv_logo.png"/>
+                        <div class="li-title"><a style ="margin-left: 1.4em;" href ="./assets/charts/CV_2023-01-17_DUCOEUR_Corentin.pdf" target="_blank">Mon CV</a></div> 
+                    </li>
+                
+                    <div>
+                        <li class="accordion" #accordion>
+                            <span class="year">&nbsp</span> <div class="li-title">Définitions</div> 
+                        </li>
+                        <div class = "description">
+                            <li class="image">
+                                <span class="year">&nbsp</span>Mon métier, Data BI analyst :
+                            </li>
+                            <div class="text-invisible">
+                                C'est un métier dans lequel on traite des données afin de s'assurer de leurs qualités et de leurs cohérences dans les différents systèmes informatique de l'entreprise (BI, ERP, CRM).<br>
+                            </div>
+                            <li class="image">
+                                <span class="year">&nbsp</span>ERP(Enterprise resource planning) :
+                            </li>
+                            <div class="text-invisible">
+                                C'est un logiciel d'entreprise utilisé principalement pour des opérations de supply chain, comme la facturation, création de client, envoit d'échantillon...<br>    
+                            </div>
+                            <li class="image">
+                                <span class="year">&nbsp</span>BI(Business Intelligence) :
+                            </li>
+                            <div class="text-invisible">
+                                 C'est un logiciel dans lequelle on va regrouper les données des différents ERP afin de les uniformiser, permettant ainsi que les Business Analysts puissent les interpréter.<br>
+                            </div>
+                            <li class="image">
+                                <span class="year">&nbsp</span>CRM (customer relationship management):
+                            </li>
+                            <div class="text-invisible">
+                                Un CRM, c'est un outil informatique qui permet la gestion des relations avec la clientèle, qui a pour ancêtre le carnet de client et permet un bien meilleur suivit de chaque client d'une entreprise, avec un historique de ces échantillons, des opportunités, des autres filiales ...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <li class="accordion" #accordion>
+                    <span class="year">&nbsp</span> <div class="li-title">Me suivre: </div> 
+                </li>
+                <div class = "description" style="display: none;">
+                    <li class="image" style="font-size: x-large">
+                        <img class="fit-picture"  src="./assets/pictures/github.svg" alt="github_img"/>
+                        <div class="li-title"><a style ="margin-left: 1.4em;" href ="https://github.com/Leykh" target="_blank">Github</a></div> 
+                    </li>
+                    <li class="image" style="font-size: x-large">
+                        <img class="fit-picture"  src="./assets/pictures/linkedin.svg" alt="linkedin_img"/>
+                        <div class="li-title"><a style ="margin-left: 1.4em;" href ="https://www.linkedin.com/in/ducoeur-corentin-5b5b94277" target="_blank">Linkedin</a></div> 
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </div>
+    
+    </div>
