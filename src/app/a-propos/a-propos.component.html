@@ -1,28 +1,16 @@
 <div class="card-container">
     <div (click)="onClickDiv($event)" class="card first-card">
+
         <h1 (click)="onClickH1($event)">A propos</h1>
+
         <div class="card-wrapper">
             <div class="profil-wrap"><a href ="https://www.linkedin.com/in/ducoeur-corentin-5b5b94277" target="_blank"><img class ="profil" src="assets/pictures/profil.png"/></a></div>
+
                 <div class="section" (click)="toggleContent('about')">
-                    <span class="year">&nbsp</span><div class="li-title">{{divs[0].title}}</div>
-                      <div *ngIf="showContent['about']">
-                          <p class="description">{{divs[0].content}}</p>
-                      </div>
+                    <div class="section-title">{{divs[0].title}}</div>
+                          <p *ngIf="showContent['about']" class="section-description">{{divs[0].content}}</p>
                 </div>
-                <li>
-                  <span class="year">&nbsp</span>
-                  <div class="li-title" (click)="toggleContent('definitions')">Définitions</div>
-                  <div class="description" *ngIf="showContent['definitions']">
-                    <!-- ... Contenu pour Définitions ... -->
-                  </div>
-                </li>
-                <li>
-                  <span class="year">&nbsp</span>
-                  <div class="li-title" (click)="toggleContent('follow')">Me suivre:</div>
-                  <div class="description" *ngIf="showContent['follow']">
-                    <!-- ... Contenu pour Me suivre ... -->
-                  </div>
-                </li>
-            </div>
-          </div>
+
         </div>
+    </div>
+</div>

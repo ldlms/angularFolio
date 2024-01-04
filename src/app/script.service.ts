@@ -23,11 +23,9 @@ export class ScriptService {
 
 
   ngAfterViewInit() {
-    // Utilisation de ngAfterViewInit pour garantir que les éléments sont rendus avant d'essayer de les sélectionner
-    if (this.accordions) {
-      // this.initAccordion();
-    }
+ 
   }
+  
 
   toggleStyle() {
     this.isStyleActive = !this.isStyleActive;
@@ -110,20 +108,21 @@ move(currentDiv:HTMLElement) {
   }
 }
 
-// initAccordion() {
-//   console.log('Nombre d\'éléments .accordion : ', this.accordions.length);
-//   const accordionArray = Array.from(this.accordions);
-//   accordionArray.forEach((element: ElementRef) => {
-//     const nativeElement = element.nativeElement;
-//     this.renderer.listen(nativeElement, 'click', () => {
-//       nativeElement.classList.toggle('active');
-//       const panel = nativeElement.nextElementSibling as HTMLElement;
-//       if (panel.style.display === 'block' || getComputedStyle(panel).display === 'block') {
-//         this.renderer.setStyle(panel, 'display', 'none');
-//       } else {
-//         this.renderer.setStyle(panel, 'display', 'block');
-//       }
-//     });
-//   });
-// }
+expand(event: MouseEvent) {
+  const clickedElement = event.target as HTMLElement;
+  const parentNode = clickedElement.parentNode as HTMLElement;
+  if (parentNode && parentNode.className === this.firstCard.name) {
+    parentNode.className = parentNode.className + " selected";
+  }
+  
+}
+
+unexpand(event: MouseEvent) {
+  const clickedElement = event.target as HTMLElement;
+  const parentNode = clickedElement.parentNode as HTMLElement;
+  if (parentNode && parentNode.className === this.firstCard.name + " selected") {
+    parentNode.className = this.firstCard.name;
+  }
+}
+
 }
