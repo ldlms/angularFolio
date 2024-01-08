@@ -1,10 +1,12 @@
 import { Component, OnInit} from '@angular/core';
 import { ScriptService } from '../script.service';
 import { NgFor, NgIf } from '@angular/common';
+import '@fortawesome/fontawesome-free/css/all.css';
 
 interface DivItem {
   title: string;
   content: string;
+  link?:string;
 }
 
 
@@ -22,11 +24,13 @@ export class AProposComponent implements OnInit {
 
   divs: DivItem[] = [
     {title: 'Delmas Léo', content: 'Je recherche avant tout un poste qui me permettra de solidifier mes compétences et me donnera de nouveaux défis à relever.'},
-
+    {title: 'Linkedin', content:'assets/pictures/linkedin.svg', link:'https://www.linkedin.com/in/l%C3%A9o-delmas-4851b91a2/'},
+    {title: 'Github', content:'assets/pictures/github.svg',link:'https://github.com/ldlms'},
   ]
 
   showContent: { [key: string]: boolean } = {
-    'about': false
+    'about': false,
+    'socials':false
   };
 
   toggleContent(section: string): void {

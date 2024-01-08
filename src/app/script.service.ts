@@ -6,8 +6,6 @@ import {ElementRef,ViewChildren, QueryList, Renderer2 } from '@angular/core';
 })
 export class ScriptService {
 
-  @ViewChildren('accordion') accordions!: QueryList<ElementRef>;
-
   firstCard: { name: string };
   rightCard: { name: string };
   leftCard: { name: string };

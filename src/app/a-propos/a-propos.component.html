@@ -4,11 +4,25 @@
         <h1 (click)="onClickH1($event)">A propos</h1>
 
         <div class="card-wrapper">
-            <div class="profil-wrap"><a href ="https://www.linkedin.com/in/ducoeur-corentin-5b5b94277" target="_blank"><img class ="profil" src="assets/pictures/profil.png"/></a></div>
+            <div class="profil-wrap"><a :href={{divs[2].link}} target="_blank"><img class ="profil" src="assets/pictures/IMG_5337.jpg"/></a></div>
 
                 <div class="section" (click)="toggleContent('about')">
-                    <div class="section-title">{{divs[0].title}}</div>
+                    <div class="section-title">{{divs[0].title}}<!--<span class="fontA" *ngIf="!showContent['about']"><i class="fa-solid fa-arrow-down"></i></span><span class="fontA" *ngIf="showContent['about']"><i class="fa-solid fa-arrow-up"></i></span>--></div> 
                           <p *ngIf="showContent['about']" class="section-description">{{divs[0].content}}</p>
+                </div>
+
+                <div class="section" (click)="toggleContent('socials')">
+                    <div class="section-title">Mes réseaux <!-- <span class="fontA" *ngIf="!showContent['socials']"><i class="fa-solid fa-arrow-down"></i></span><span class="fontA" *ngIf="showContent['socials']"><i class="fa-solid fa-arrow-up"></i></span>--></div>
+                        <div class="sousSection" *ngIf="showContent['socials']">
+                        <p class="section-description">{{divs[1].title}}</p>
+                        <a :href={{divs[1].link}} target="_blank"> <img class="picture" :src={{divs[1].content}} alt="imageLinkedin"/></a>
+                        </div>
+
+                        <div class="sousSection" *ngIf="showContent['socials']">
+                            <p class="section-description">{{divs[2].title}}</p>
+                            <a :href={{divs[2].link}} target="_blank"> <img class="picture" :src={{divs[2].content}} alt="imageGithub"/></a>
+                            </div>
+
                 </div>
 
         </div>
